@@ -25,6 +25,7 @@ class _CalculadoraIMCState extends State<CalculadoraIMC> {
 
   Color estadoCor = Colors.transparent;
   Color resultadoCor = Colors.transparent;
+  Color iconColor = AppColors.primaryColor;
 
   String _getCurrentHour() {
     return DateFormat('HH').format(DateTime.now());
@@ -77,27 +78,35 @@ class _CalculadoraIMCState extends State<CalculadoraIMC> {
         if (imc < 16) {
           situacao = "magreza grave";
           estadoCor = Colors.red;
+          iconColor = Colors.red;
         } else if (imc >= 16 && imc <= 16.9) {
           situacao = "magreza moderada";
           estadoCor = Colors.deepOrange;
+          iconColor = Colors.deepOrange;
         } else if (imc >= 17 && imc <= 18.5) {
           situacao = "magreza leve";
           estadoCor = Colors.orange;
+          iconColor = Colors.orange;
         } else if (imc >= 18.6 && imc <= 24.9) {
           situacao = "peso ideal";
           estadoCor = Colors.green;
+          iconColor = Colors.green;
         } else if (imc >= 25 && imc <= 29.9) {
           situacao = "sobrepeso";
           estadoCor = Colors.yellow;
+          iconColor = Colors.yellow;
         } else if (imc >= 30 && imc <= 34.9) {
           situacao = "obesidade grau I";
           estadoCor = Colors.orange;
+          iconColor = Colors.orange;
         } else if (imc >= 35 && imc <= 39.9) {
           situacao = "obesidade grau II ou severa";
           estadoCor = Colors.deepOrange;
+          iconColor = Colors.deepOrange;
         } else if (imc > 40) {
           situacao = "obesidade grau III ou mórbida";
           estadoCor = Colors.red;
+          iconColor = Colors.red;
         } else {
           situacao = "IMC inválido";
           imc = 0.0;
@@ -117,6 +126,7 @@ class _CalculadoraIMCState extends State<CalculadoraIMC> {
       appBar: AppBar(
         centerTitle: true,
         title: Row(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('lib/assets/images/logoIMC.png', height: 70),
@@ -158,11 +168,7 @@ class _CalculadoraIMCState extends State<CalculadoraIMC> {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: AppSpacing.sizedBoxHeight),
-            Icon(
-              Icons.person,
-              size: AppSize.bodyIconSize,
-              color: AppColors.primaryColor,
-            ),
+            Icon(Icons.person, size: AppSize.bodyIconSize, color: iconColor),
             SizedBox(height: AppSpacing.sizedBoxHeight),
 
             // Input peso

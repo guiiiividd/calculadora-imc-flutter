@@ -105,11 +105,11 @@ class TelaLoginState extends State<TelaLogin> {
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Por favor digite o seu e-mail';
+                          return 'Digite o seu e-mail!';
                         } else if (!RegExp(
                           r'^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}',
                         ).hasMatch(value)) {
-                          return 'Por favor digite um endereço de e-mail válido';
+                          return 'Digite um endereço de e-mail válido!';
                         }
                         return null;
                       },
@@ -140,7 +140,11 @@ class TelaLoginState extends State<TelaLogin> {
                         if (value!.isEmpty) {
                           return 'Digite a sua senha!';
                         } else if (value.length < 6) {
-                          return 'A senha deve ter pelo menos 6 caracteres';
+                          return 'A senha deve ter pelo menos 8 caracteres!';
+                        } else if (!RegExp(r'[A-Za-z]').hasMatch(value)) {
+                          return 'A senha deve ter pelo menos uma letra!';
+                        } else if (!RegExp(r'\d').hasMatch(value)) {
+                          return 'A senha deve ter pelo menos um número!';
                         }
                         return null;
                       },

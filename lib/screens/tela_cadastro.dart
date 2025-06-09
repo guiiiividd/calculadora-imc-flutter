@@ -123,7 +123,7 @@ class TelaCadastroState extends State<TelaCadastro> {
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Por favor digite o seu nome e sobrenome';
+                          return 'Digite o seu nome e sobrenome!';
                         }
                         return null;
                       },
@@ -151,7 +151,7 @@ class TelaCadastroState extends State<TelaCadastro> {
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Por favor digite o seu e-mail';
+                          return 'Digite o seu e-mail!';
                         } else if (!RegExp(
                           r'^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}',
                         ).hasMatch(value)) {
@@ -183,9 +183,13 @@ class TelaCadastroState extends State<TelaCadastro> {
                       obscureText: true,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Por favor, digite sua senha';
-                        } else if (value.length < 6) {
-                          return 'A senha deve ter pelo menos 6 caracteres';
+                          return 'Digite a sua senha!';
+                        } else if (value.length < 8) {
+                          return 'A senha deve ter pelo menos 8 caracteres!';
+                        } else if (!RegExp(r'[A-Za-z]').hasMatch(value)) {
+                          return 'A senha deve ter pelo menos uma letra!';
+                        } else if (!RegExp(r'\d').hasMatch(value)) {
+                          return 'A senha deve ter pelo menos um número!';
                         }
                         return null;
                       },
@@ -213,11 +217,9 @@ class TelaCadastroState extends State<TelaCadastro> {
                       obscureText: true,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Por favor, digite sua senha';
+                          return 'Repita a sua senha';
                         } else if (value != senhaController.text) {
-                          return 'As senhas devem ser iguais';
-                        } else if (value.length < 6) {
-                          return 'A senha deve ter pelo menos 6 caracteres';
+                          return 'As senhas devem ser iguais!';
                         }
                         return null;
                       },
